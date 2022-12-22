@@ -1,0 +1,417 @@
+<div class="formSec w-md-5 m-auto br6 pos-rel hideflow" id="signupForm">
+    <h3 class="fs5">Create an account</h3>
+    <div class="form-wrapper text-left">
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+            <div
+                class="input-wrapper"
+                [ngClass]="{
+                    'error animated shake fast': f['role'].errors?.['backendError']
+                }"
+            >
+                <label class="input-icon"
+                    ><i class="sprite-xs icon-1"></i
+                ></label>
+                <mat-select formControlName="role" class="form-input">
+                    <mat-option value="">Select Role</mat-option>
+                    <mat-option [value]="roles.Admin">Administrator</mat-option>
+                    <mat-option [value]="roles.Individual"
+                        >Owner/Buyer</mat-option
+                    >
+                    <mat-option [value]="roles.Lawyer">Lawyer</mat-option>
+                    <mat-option [value]="roles.Insurer">Insurer</mat-option>
+                    <mat-option [value]="roles.Lender">Lender</mat-option>
+                    <mat-option [value]="roles.Municipality"
+                        >Municipal Authority</mat-option
+                    >
+                    <mat-option [value]="roles.Easement"
+                        >Easement Holder</mat-option
+                    >
+                </mat-select>
+                <div *ngIf="submitted && f['role'].errors" class="input-error">
+                    <div *ngIf="f['role'].errors['required']">Select role</div>
+                </div>
+            </div>
+            <ng-template [ngIf]="signupForm.value.role">
+                <div
+                    class="input-wrapper col w-g-12"
+                    [ngClass]="{
+                        'error animated shake fast':
+                            f['bizID'].errors?.['backendError']
+                    }"
+                    *ngIf="isBizIdRequired"
+                >
+                    <label class="input-label w-g-3 col">Business ID</label>
+                    <input
+                        type="text"
+                        formControlName="bizID"
+                        class="form-input w-g-9 col"
+                        placeholder="Business, License or Practice registration ID"
+                    />
+                    <div
+                        *ngIf="submitted && f['bizID'].errors"
+                        class="input-error"
+                    >
+                        <div *ngIf="f['bizID'].errors['required']">
+                            Bussiness ID is required
+                        </div>
+                        <div *ngIf="f['bizID'].errors['backendError']">
+                            {{ backendErrorText }}
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="input-wrapper col w-g-12"
+                    [ngClass]="{
+                        'error animated shake fast':
+                            f['emailID'].errors?.['backendError']
+                    }"
+                >
+                    <label class="input-label w-g-3 col">Email</label>
+                    <input
+                        type="email"
+                        formControlName="emailID"
+                        class="form-input w-g-9 col"
+                        placeholder="Your Email Address"
+                    />
+                    <div
+                        *ngIf="submitted && f['emailID'].errors"
+                        class="input-error"
+                    >
+                        <div *ngIf="f['emailID'].errors['required']">
+                            Email is required
+                        </div>
+                        <div *ngIf="f['emailID'].errors['pattern']">
+                            Invalid email
+                        </div>
+                        <div *ngIf="f['emailID'].errors['backendError']">
+                            {{ backendErrorText }}
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="input-wrapper col w-g-12"
+                    [ngClass]="{
+                        'error animated shake fast':
+                            f['password'].errors?.['backendError']
+                    }"
+                >
+                    <label class="input-label w-g-3 col">Password</label>
+                    <input
+                        type="password"
+                        formControlName="password"
+                        class="form-input w-g-9 col"
+                        placeholder="Your Password"
+                    />
+                    <div
+                        *ngIf="submitted && f['password'].errors"
+                        class="input-error"
+                    >
+                        <div *ngIf="f['password'].errors['required']">
+                            Password is required
+                        </div>
+                        <div *ngIf="f['password'].errors['pattern']">
+                            Need strong Password
+                        </div>
+                        <div *ngIf="f['password'].errors['backendError']">
+                            {{ backendErrorText }}
+                        </div>
+                    </div>
+                    <label class="fs1 d-block"
+                        >Atleast 8 Characters with 1 uppercase, 1 lowercase, 1
+                        numeric</label
+                    >
+                </div>
+                <div
+                    class="input-wrapper col w-g-12"
+                    [ngClass]="{
+                        'error animated shake fast':
+                            f['firstName'].errors?.['backendError']
+                    }"
+                >
+                    <label class="input-label w-g-3 col">First Name</label>
+                    <input
+                        type="text"
+                        formControlName="firstName"
+                        class="form-input w-g-9 col"
+                        placeholder="Your First Name"
+                    />
+                    <div
+                        *ngIf="submitted && f['firstName'].errors"
+                        class="input-error"
+                    >
+                        <div *ngIf="f['firstName'].errors['required']">
+                            First Name is required
+                        </div>
+                        <div *ngIf="f['firstName'].errors['minlength']">
+                            Minimum 3 characters
+                        </div>
+                        <div *ngIf="f['firstName'].errors['backendError']">
+                            {{ backendErrorText }}
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="input-wrapper col w-g-12"
+                    [ngClass]="{
+                        'error animated shake fast':
+                            f['lastName'].errors?.['backendError']
+                    }"
+                >
+                    <label class="input-label w-g-3 col">Last Name</label>
+                    <input
+                        type="text"
+                        formControlName="lastName"
+                        class="form-input w-g-9 col"
+                        placeholder="Last Name"
+                    />
+                    <div
+                        *ngIf="submitted && f['lastName'].errors"
+                        class="input-error"
+                    >
+                        <div *ngIf="f['lastName'].errors['required']">
+                            Last Name is required
+                        </div>
+                        <div *ngIf="f['lastName'].errors['minlength']">
+                            Minimum 3 characters
+                        </div>
+                        <div *ngIf="f['lastName'].errors['backendError']">
+                            {{ backendErrorText }}
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="input-wrapper col w-g-12"
+                    [ngClass]="{
+                        'error animated shake fast':
+                            f['phoneNumber'].errors?.['backendError']
+                    }"
+                >
+                    <label class="input-label w-g-3 col">Phone</label>
+                    <input
+                        type="text"
+                        formControlName="phoneNumber"
+                        class="form-input w-g-9 col"
+                        placeholder="Your Phone Number"
+                    />
+                    <div
+                        *ngIf="submitted && f['phoneNumber'].errors"
+                        class="input-error"
+                    >
+                        <div *ngIf="f['phoneNumber'].errors['required']">
+                            Phone number is required
+                        </div>
+                        <div *ngIf="f['phoneNumber'].errors['pattern']">
+                            Invalid phone number
+                        </div>
+                        <div *ngIf="f['phoneNumber'].errors['backendError']">
+                            {{ backendErrorText }}
+                        </div>
+                    </div>
+                </div>
+                <div formGroupName="address">
+                    <div
+                        class="input-wrapper col w-g-12"
+                        [ngClass]="{
+                            'error animated shake fast':
+                                t.controls['street'].errors?.['backendError']
+                        }"
+                    >
+                        <label class="input-label w-g-3 col">Street</label>
+                        <input
+                            type="text"
+                            formControlName="street"
+                            class="form-input w-g-9 col"
+                            placeholder="Unit & Street"
+                        />
+                        <div
+                            *ngIf="submitted && t.controls['street'].errors"
+                            class="input-error"
+                        >
+                            <div
+                                *ngIf="t.controls['street'].errors['required']"
+                            >
+                                Street is required
+                            </div>
+                            <div
+                                *ngIf="
+                                    t.controls['street'].errors['backendError']
+                                "
+                            >
+                                {{ backendErrorText }}
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="input-wrapper col w-g-12"
+                        [ngClass]="{
+                            'error animated shake fast':
+                                t.controls['city'].errors?.['backendError']
+                        }"
+                    >
+                        <label class="input-label w-g-3 col">City</label>
+                        <input
+                            type="text"
+                            formControlName="city"
+                            class="form-input w-g-9 col"
+                            placeholder="City"
+                        />
+                        <div
+                            *ngIf="submitted && t.controls['city'].errors"
+                            class="input-error"
+                        >
+                            <div *ngIf="t.controls['city'].errors['required']">
+                                City is required
+                            </div>
+                            <div
+                                *ngIf="
+                                    t.controls['city'].errors['backendError']
+                                "
+                            >
+                                {{ backendErrorText }}
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="input-wrapper col w-g-12"
+                        [ngClass]="{
+                            'error animated shake fast':
+                                t.controls['province'].errors?.['backendError']
+                        }"
+                    >
+                        <label class="input-label w-g-3 col">Province</label>
+                        <input
+                            type="text"
+                            formControlName="province"
+                            class="form-input w-g-9 col"
+                            placeholder="Your Province or State"
+                        />
+                        <div
+                            *ngIf="submitted && t.controls['province'].errors"
+                            class="input-error"
+                        >
+                            <div
+                                *ngIf="
+                                    t.controls['province'].errors['required']
+                                "
+                            >
+                                Province is required
+                            </div>
+                            <div
+                                *ngIf="
+                                    t.controls['province'].errors[
+                                        'backendError'
+                                    ]
+                                "
+                            >
+                                {{ backendErrorText }}
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="input-wrapper col w-g-12"
+                        [ngClass]="{
+                            'error animated shake fast':
+                                t.controls['country'].errors?.['backendError']
+                        }"
+                    >
+                        <label class="input-label w-g-3 col">Country</label>
+                        <input
+                            type="text"
+                            formControlName="country"
+                            class="form-input w-g-9 col"
+                            placeholder="Your Country"
+                        />
+                        <div
+                            *ngIf="submitted && t.controls['country'].errors"
+                            class="input-error"
+                        >
+                            <div
+                                *ngIf="t.controls['country'].errors['required']"
+                            >
+                                Country is required
+                            </div>
+                            <div
+                                *ngIf="
+                                    t.controls['country'].errors['backendError']
+                                "
+                            >
+                                {{ backendErrorText }}
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="input-wrapper col w-g-12"
+                        [ngClass]="{
+                            'error animated shake fast':
+                                t.controls['postalcode'].errors?.['backendError']
+                        }"
+                    >
+                        <label class="input-label w-g-3 col">ZIP Code</label>
+                        <input
+                            type="text"
+                            formControlName="postalcode"
+                            class="form-input w-g-9 col"
+                            placeholder="X0X 0X0"
+                        />
+                        <div
+                            *ngIf="submitted && t.controls['postalcode'].errors"
+                            class="input-error"
+                        >
+                            <div
+                                *ngIf="
+                                    t.controls['postalcode'].errors['required']
+                                "
+                            >
+                                ZIP Code is required
+                            </div>
+                            <div
+                                *ngIf="
+                                    t.controls['postalcode'].errors['pattern']
+                                "
+                            >
+                                Enter Canada zipcode
+                            </div>
+                            <div
+                                *ngIf="
+                                    t.controls['postalcode'].errors[
+                                        'backendError'
+                                    ]
+                                "
+                            >
+                                {{ backendErrorText }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-wrapper w-g-12 col">
+                    <input
+                        type="checkbox"
+                        formControlName="terms"
+                        class="form-input"
+                        id="terms"
+                    />
+                    <label
+                        for="terms"
+                        class="checkLabel fs0"
+                        [ngClass]="{
+                            error: submitted && f['terms'].errors?.['required']
+                        }"
+                        >By registering, you agree to our Terms and Privacy
+                        Policy.</label
+                    >
+                </div>
+                <div class="clearfix"></div>
+                <div
+                    *ngIf="formError != null"
+                    class="fc10 formError animated fadeInUp fast text-center"
+                    (click)="formError = null"
+                >
+                    {{ formError }}
+                </div>
+                <div class="input-wrapper text-center w-g-12 col">
+                    <button class="btn fs3 fw5" type="submit">Register</button>
+                </div>
+            </ng-template>
+        </form>
+    </div>
+</div>

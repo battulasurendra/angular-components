@@ -1,0 +1,35 @@
+@import "../../../assets/scss/variables";
+
+#userSec {
+    background: url("../../../assets/images/homepage-bg.jpg") center/cover
+        no-repeat fixed;
+    color: $color4;
+    min-height: 100vh;
+    padding-top: 100px;
+    overflow: auto;
+    height: 100%;
+
+    .userSecrow1 {
+        margin-bottom: 30px;
+
+        .formSec {
+            padding: 40px;
+            background: rgb(245, 245, 245, 0.75);
+            border: 2px solid $color3;
+
+            h3 {
+                padding: 0 0 30px;
+            }
+
+            button.btn[type="submit"] {
+                margin-top: 20px;
+            }
+        }
+
+        #resetForm,
+        #forgotForm,
+        #loginForm {
+            margin: 7% auto;
+        }
+    }
+}

@@ -1,0 +1,1347 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'variables';
+@import 'mixins';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+/****************** Fonts ******************/
+@font-face {
+	font-family: 'Roboto';
+	src: local('Roboto Regular'), local('Roboto-Regular'),
+		url('../fonts/Roboto-Regular.woff2') format('woff2'),
+		url('../fonts/Roboto-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: local('Roboto Medium'), local('Roboto-Bold'),
+		url('../fonts/Roboto-Medium.woff2') format('woff2'),
+		url('../fonts/Roboto-Medium.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nachlieli CLM';
+    src: local('Nachlieli CLM Bold'), local('NachlieliCLM-Bold'),
+        url('../fonts/NachlieliCLM-Bold.woff2') format('woff2'),
+        url('../fonts/NachlieliCLM-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/****************** Fonts ******************/
+/****************** Global ******************/
+body {
+	font: $font-set1;
+	color: $color2;
+	background: $color1;
+	margin: 0;
+    overflow-x: hidden;
+    padding: 0 !important;
+}
+
+* {
+	outline: none !important;
+	text-decoration: none;
+	box-sizing: border-box !important;
+
+	&:focus {
+		outline: none !important;
+		text-decoration: none;
+		box-sizing: border-box !important;
+	}
+
+	&:active {
+		outline: none !important;
+		text-decoration: none;
+		box-sizing: border-box !important;
+	}
+}
+
+a {
+	cursor: pointer;
+	color: inherit;
+
+	&:focus {
+		cursor: pointer;
+		color: inherit;
+	}
+
+	&:active {
+		cursor: pointer;
+		color: inherit;
+    }
+}
+
+img {
+	width: 100%;
+	height: auto;
+	display: block;
+	margin: auto;
+}
+
+i {
+	font-style: italic;
+}
+
+section {
+	padding: 25px 0;
+	position: relative;
+	z-index: 1;
+	clear: both;
+}
+
+ul {
+	padding: 0;
+	margin: auto;
+	list-style: none;
+}
+
+button {
+	background: transparent;
+	border: none;
+	padding: 0;
+	margin: auto;
+	cursor: pointer;
+}
+/****************** Global ******************/
+/****************** Sprite styles ******************/
+@include generateSprite('../images/sprite-icons.svg', 1, 16);
+/****************** Sprite styles ******************/
+/****************** Modal styles ******************/
+.modal {
+	position: fixed;
+	top: 100%;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: block;
+	overflow: hidden;
+	@include transition($transition-set1);
+	opacity: 0;
+	overflow-x: hidden;
+	overflow-y: scroll !important;
+	margin-right: -17px;
+	z-index: 99999;
+}
+.modal.in {
+	opacity: 1;
+	top: 0;
+	background: rgba(0, 0, 0, 0.5);
+}
+.modal-dialog {
+	position: relative;
+	width: 100%;
+	max-width: 90%;
+	margin: 50px auto;
+}
+.modal-content {
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+}
+.modal-header {
+	padding: 15px;
+	.close {
+		float: right;
+		font-size: 21px;
+		line-height: 1;
+		color: $color2;
+		opacity: 0.2;
+		padding: 0;
+		cursor: pointer;
+		background: transparent;
+		border: 0;
+		margin-top: -2px;
+		&:hover {
+			color: $color2;
+			text-decoration: none;
+			cursor: pointer;
+			filter: alpha(opacity=50);
+			opacity: .5;
+		}
+		&:focus {
+			color: $color2;
+			text-decoration: none;
+			cursor: pointer;
+			filter: alpha(opacity=50);
+			opacity: .5;
+		}
+	}
+}
+
+.modal-body {
+	position: relative;
+	padding: 15px;
+	display: inline-block;
+	width: 100%;
+}
+/****************** Modal styles ******************/
+/****************** Material Overrides ******************/
+body .mat-sort-header-container {
+    display: inline-block;
+
+    .mat-sort-header-arrow,
+    .mat-sort-header-button {
+        display: inline-block;
+        vertical-align: middle;
+        color: inherit;
+    }
+}
+
+body mat-select.btn-green {   
+    .mat-select-arrow,
+    .mat-select-placeholder,
+    .mat-select-value-text {
+        color: $color1;
+    }
+
+    &:hover {
+        .mat-select-arrow,
+        .mat-select-placeholder,
+        .mat-select-value-text {
+            color: $color5;
+        }
+    }
+}
+/****************** Material Overrides ******************/
+/****************** Sweetalert Overrides ******************/
+.swal2-container {
+    top: 60px !important;
+
+    * {
+        box-sizing: content-box !important;
+    }
+
+    .swal2-content * {
+        box-sizing: border-box !important;
+    }
+}
+/****************** Sweetalert Overrides ******************/
+/****************** Button styles ******************/
+.btn {
+	width: auto;
+	height: auto;
+	font-family: inherit;
+	font-size: inherit;
+	color: $color1;
+	background: $color5;
+    padding: 6px 25px;
+    line-height: 24px !important;
+	margin: 0;
+	vertical-align: top;
+	cursor: pointer;
+	border-radius: 4px;
+	border: 2px solid $color5;
+    @include transition($transition-set2);
+    @extend .hideflow;
+
+	&:not(.btn-lazy):hover {
+		background: $color1;
+		color: $color5;
+    }
+
+    &.btn-blue {
+        color: $color1;
+        background: $color4;
+        border-color: $color4;
+
+        &:hover {
+            color: $color4;
+            background: $color1;
+        }
+    }
+
+    &.btn-blue-naked {
+        color: $color4;
+        background: $color1;
+        border-color: $color4;
+    
+        &:focus,
+        &:hover {
+            color: $color1;
+            background: $color4;
+        }
+    }
+
+    &.btn-green {
+        color: $color1;
+        background: $color5;
+        border-color: $color5;
+
+        &:hover {
+            color: $color5;
+            background: $color1;
+        }
+    }
+
+    &.btn-green-naked {
+        color: $color5;
+        background: $color1;
+        border-color: $color5;
+    
+        &:focus,
+        &:hover {
+            color: $color1;
+            background: $color5;
+        }
+    }
+    &.btn-dark {
+        color: $color1;
+        background: $color9;
+        border-color: $color9;
+
+        &:hover {
+            color: $color9;
+            background: $color1;
+        }
+    }
+
+    &.btn-dark-naked {
+        color: $color9;
+        background: $color1;
+        border-color: $color9;
+    
+        &:focus,
+        &:hover {
+            color: $color1;
+            background: $color9;
+        }
+    }
+
+    &.btn-red {
+        color: $color1;
+        background: $color10;
+        border-color: $color10;
+
+        &:hover {
+            color: $color10;
+            background: $color1;
+        }
+    }
+
+    &.btn-red-naked {
+        color: $color10;
+        background: $color1;
+        border-color: $color10;
+    
+        &:focus,
+        &:hover {
+            color: $color1;
+            background: $color10;
+        }
+    }
+
+    &.btn-naked {
+        color: inherit;
+        background: inherit;
+        border-color: transparent;
+    
+        &:focus,
+        &:hover {
+            color: inherit;
+            background: inherit;
+            border-color: transparent;
+        }
+    }
+}
+/****************** Button styles ******************/
+/****************** Tooltip styles ******************/
+body .sidebar-tooltip {
+    background-color: $color1;
+    border-radius: 4px;
+    @extend .fs2;
+    @extend .pos-rel;
+    color: $color4;
+    padding: 5px 15px;
+    min-width: 150px;
+    overflow: visible;
+    border: 1px solid $color4;
+
+    &::before,
+    &::after{
+        @extend %absolute-basic;
+        content: "";
+        right: auto;
+        left: -10px;
+        z-index: 7;
+        width: 0;
+        height: 0;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-right: 10px solid $color1;
+    }
+
+    &::before{
+        left: -12px;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-right: 12px solid $color4;
+
+    }
+}
+/****************** Tooltip styles ******************/
+/****************** Form styles ******************/
+.formError{
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+
+.input-wrapper {
+	position: relative;
+    padding: 5px 10px;
+
+    .input-group {
+        .input-wrapper {
+            margin-bottom: 10px;
+        }
+    }
+    
+    .form-input {
+	    font-family: $font-family1;
+        height: auto;
+        font-size: 14px;
+        line-height: 24px;
+        padding: 6px 15px;
+        margin: auto;
+        border: 1px solid $color4;
+        border-radius: $form-radius;
+        vertical-align: top;
+        background-color: $color1;
+
+        &.disabled {
+            background-color: #e9ecef;
+            border-color: #ced4da;
+            color: #495057;
+            cursor: not-allowed;
+        }
+    }
+    
+    select.form-input {
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+    
+    textarea.form-input {
+        height: auto;
+        resize: vertical;
+        min-height: 40px;
+    }
+
+    ::placeholder {
+        color: $color3;
+        opacity: 1; /* for Firefox */
+    }
+
+    :-ms-input-placeholder {
+        color: $color3;
+    }
+
+    ::-ms-input-placeholder {
+        color: $color3;
+    }
+
+    // Input with label styles
+    .input-label {
+        font-size: 13px;
+        line-height: 20px;
+        color: $color1;
+        background-color: $color4;
+        display: block;
+        padding: 8px 15px;
+        margin: auto;
+        border: 1px solid $color4;
+        border-radius: $form-radius 0 0 $form-radius;
+    }
+    
+    .input-label + .form-input {
+        border-radius: 0 $form-radius $form-radius 0;
+    }
+    
+    // Input with icon styles
+	.input-icon {
+        width: auto;
+        height: auto;
+        position: absolute;
+        margin: auto;
+        top: 5px;
+        bottom: 5px;
+        left: 10px;
+        border-radius: $form-radius 0 0 $form-radius;
+        background-color: $color4;
+        padding: 0 5px;
+
+		[class*="sprite"] {
+			margin: 5px 0;
+		}
+
+		.sprite-xs {
+			margin: 6px 5px;
+		}
+    }
+
+    &.zero-padding {
+        .input-icon {
+            top: 0;
+            bottom: 0;
+            left: 0;
+        }
+    }
+    
+    .input-icon + .form-input {
+        padding-left: 55px;
+    }
+
+    .date-wrapper{
+        @extend .pos-rel;
+
+        .input-icon {
+            top: 7px;
+            bottom: 7px;
+            right: 2px;
+            z-index: 0;
+            background: transparent;
+            left: auto;
+
+            .sprite-xs {
+                margin: 0px 5px;
+            }
+        }
+
+        button {
+            z-index: 1;
+        }
+
+        .input-error {
+            right: 0;
+        }
+    }
+
+    &.d-table {
+        border-collapse: separate;
+        border-spacing: 10px 5px;
+        padding: 0;
+        
+        > .cell {
+            vertical-align: top;
+        }
+    }
+
+    &.error{
+        .input-icon,
+        .form-input {
+            border-color: $color10;
+        }
+    }
+
+    // Checkbox and radio styles
+    input[type="radio"],
+    input[type="checkbox"]{
+        opacity: 0;
+        width: 0;
+        height: 0;
+
+		&:checked + .checkLabel {
+			&::before {
+				background: $color5;
+			}
+		}
+    }
+
+	.checkLabel {
+		padding-left: 25px;
+		cursor: pointer;
+        margin: auto;
+        position: relative;
+        display: inline-block;
+        border: 1px solid transparent;
+        
+        &::before {
+			content: '';
+			@extend %absolute-basic;
+			width: 12px;
+			height: 12px;
+			left: 7px;
+            top: 3px;
+            bottom: auto;
+			right: auto;
+			background: $color1;
+			border-radius: 2px;
+			z-index: 2;
+		}
+
+		&::after {
+			content: '';
+			@extend %absolute-basic;
+			width: 16px;
+			height: 16px;
+			left: 5px;
+			right: auto;
+            bottom: auto;
+            top: 1px;
+			background: $color1;
+			border-radius: 2px;
+			border: $border-set2 $color3;
+			z-index: 1;
+		}
+
+        &.error{
+            border-color: $color10;
+        }
+    }
+
+    .checkWrapper {
+        font-size: 13px;
+        line-height: 16px;
+        color: $color4;
+        background-color: $color1;
+        padding: 1px 15px;
+        margin: auto;
+        border: 2px solid $color3;
+        border-radius: $form-radius;
+        height: 40px;
+
+        &::before {
+			left: auto;
+            top: 12px;
+            bottom: auto;
+			right: 7px;
+		}
+
+		&::after {
+			left: auto;
+			right: 5px;
+            bottom: auto;
+            top: 10px;
+		}
+    }
+    
+    // File Upload styles
+    input[type="file"]{
+        display: none;
+    }
+
+    .fileLable{
+        @extend .form-input;
+        display: block;
+        cursor: pointer;
+
+        &[class*="spriteAfter-"]{
+            padding-left: 30px;
+            
+            &::after{
+                left: 5px;
+                right: auto;
+            }
+        }
+    }
+    
+    .input-error {
+        color: $color1;
+        background: $color10;
+        text-align: right;
+        padding: 3px 10px 3px 5px;
+        font-size: 12px;
+        line-height: 14px;
+        position: absolute;
+        top: 0px;
+        right: 10px;
+        z-index: 2;
+        border-radius: 4px 6px 0 4px;
+        @include anim($name:fadeInExplode, $duration: 0.2s, $fill-mode: forwards);
+
+        &.right{
+            right: 0;
+        }
+    }
+
+    .checkLabel.error + .input-error{
+        top: -5px;
+    }
+
+    .input-wrapper {
+        input[type="file"] ~ .input-error {
+            right: 0;
+        }
+    }
+
+    ul.form-list {
+        border: $border-set1;
+        border-radius: $form-radius;
+        margin-top: 8px;
+
+        li{
+            @extend .hideflow;
+            @extend .pos-rel;
+            border-bottom: $border-set1;
+            padding: 5px 0;
+            margin: 0 5px;
+
+            &:last-child{
+                border: none;
+            }
+
+            button{
+                @extend .absolute-bg;
+                @extend .bg1;
+                left: auto;
+            }
+        }
+    }
+
+    .fileCard {
+        button{
+            @extend .absolute-bg;
+            @extend .bg1;
+            left: auto;
+        }
+    }
+}
+/****************** Form styles ******************/
+/****************** Dropdown styles ******************/
+.dropdown {
+	position: relative;
+    &.open,
+    &:hover,
+    &:active{
+
+        >.dropdown-menu {
+            display: block;
+        }
+    }
+}
+
+.input-wrapper {
+	.dropdown {
+		margin: 10px 0;
+	}
+}
+
+.caret.dropdown-toggle {
+	padding-right: 25px;
+
+    &:hover {
+        color: $color11;
+    }
+
+	&::after {
+		content: '';
+		width: 0;
+		height: 0;
+		margin: auto;
+		position: absolute;
+		top: 0;
+		right: 7px;
+		bottom: 0;
+		border-top: 6px solid;
+		border-right: 5px solid transparent;
+		border-left: 5px solid transparent;
+	}
+}
+
+ul.dropdown-menu {
+	width: auto;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	display: none;
+	float: left;
+	min-width: 160px;
+	padding: 5px 0;
+	list-style: none;
+	background-color: #fff;
+	border-radius: 4px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+    z-index: 1000;
+    
+    &.right {
+        left: auto;
+        right: 0;
+    }
+
+	>li {
+		padding: 5px 15px;
+		cursor: pointer;
+
+		&:hover {
+			color: $color11;
+		}
+	}
+}
+/****************** Dropdown styles ******************/
+/****************** Display and align styles ******************/
+.text-left{text-align: left;}
+.text-right{text-align: right;}
+.text-center{text-align: center;}
+.text-justify{text-align: justify;}
+.text-nowrap{
+    white-space: nowrap;
+}
+
+.d-block{display: block;}
+.d-inline{display: inline-block;}
+.d-flex{display: flex;}
+.d-none{display: none;}
+.d-table {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+
+	>.cell {
+		display: table-cell;
+		vertical-align: middle;
+		float: none;
+	}
+
+	>.cell.v-top {vertical-align: top;}
+	>.cell.v-middle {vertical-align: middle;}
+	>.cell.v-bottom {vertical-align: bottom;}
+	>.cell.v-base {vertical-align: baseline;}
+}
+
+.d-table.row {
+	width: auto;
+}
+
+.cell {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.v-top {vertical-align: top;}
+.v-middle {vertical-align: middle;}
+.v-bottom {vertical-align: bottom;}
+.v-base {vertical-align: baseline;}
+
+.i-inline{
+    width: auto;
+    height: auto;
+    min-height: auto;
+    min-width: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.i-fit{
+    width: 100%;
+    height: 100%;
+    min-height: auto;
+    min-width: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.i-cover{
+    width: auto;
+    height: auto;
+    min-height: 100%;
+    min-width: 100%;
+    max-width: none;
+    max-height: none;
+}
+
+.m-auto{margin: auto;}
+.m-left{margin-left: 0 !important;}
+.m-right{margin-right: 0 !important;}
+
+.pos-rel{
+    position: relative;
+    z-index: 1;
+}
+
+.pos-rel > *{
+    z-index: 1;
+}
+
+.pos-rel .absolute-bg{
+    z-index: 0;
+}
+
+.absolute-bg{
+	@extend %absolute-basic;
+    z-index: 0;
+}
+/****************** Display and align styles ******************/
+/****************** Browser Override ******************/
+h1,h2,h3,h4,h5,h6{
+    margin: auto;
+    font-weight: normal;
+}
+
+// ::-webkit-scrollbar {
+// 	width: 10px;
+// 	background-color: $color8;
+// }
+
+// ::-webkit-scrollbar-track {
+// 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+// 	        box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+// 	background-color: $color1;
+// 	border-radius: 10px;
+// }
+
+// ::-webkit-scrollbar-thumb {
+// 	border-radius: 10px;
+// 	background-color: $color8;
+// 	// background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.55, $color3), color-stop(0.86, $color4));
+// }
+/****************** Browser Override ******************/
+/****************** Font Sizes ******************/
+.fs0 {
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.fs1 {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.fs2 {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.fs3 {
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.fs4 {
+    font-size: 20px;
+    line-height: 21px;
+}
+
+.fs5 {
+    font-size: 26px;
+    line-height: 28px;
+}
+
+.hs1 {
+	font-size: 100px;
+	line-height: 1;
+}
+
+.hs2 {
+	font-size: 65px;
+	line-height: 1;
+}
+
+.hs3 {
+	font-size: 45px;
+	line-height: 1;
+}
+
+.hs4 {
+	font-size: 36px;
+	line-height: 1;
+}
+
+.hs5 {
+	font-size: 30px;
+	line-height: 1;
+}
+/****************** Font Sizes ******************/
+/****************** Font Family ******************/
+.fsi{font-style: italic;}
+.ff1{font-family: $font-family1;}
+.ff2{font-family: $font-family2;}
+/****************** Font Family ******************/
+/****************** Font Weights ******************/
+@for $i from 1 through 9 {
+	.fw#{$i} {
+		font-weight: #{$i * 100};
+	}
+}
+.fwb {font-weight: bold;}
+/****************** Font Weights ******************/
+/****************** Text styles ******************/
+.ttu{text-transform: uppercase;}
+.ttc{text-transform: capitalize;}
+.ttl{text-transform: lowercase;}
+
+.tdu{text-decoration: underline;}
+.tduh:hover{text-decoration: underline;}
+/****************** Text styles ******************/
+/****************** Border Styles ******************/
+.b-full {border: $border-set1}
+.b-top {border-top: $border-set1}
+.b-left {border-left: $border-set1}
+.b-bottom {border-bottom: $border-set1}
+.b-right {border-right: $border-set1}
+/****************** Border Styles ******************/
+/****************** Font, Background, Border Colors ******************/
+@each $x in $colors {
+	$i: index($colors, $x);
+	.fc#{$i}{
+		@include color($x)
+    }
+    
+	.fch#{$i}:hover{
+		@include color($x)
+	}
+
+	.bg#{$i}{
+		background-color : $x;
+	}
+
+	.bgh#{$i}:hover{
+		background-color : $x;
+	}
+
+	.bc#{$i}{
+		border-color : $x;
+	}
+
+	.bch#{$i}:hover{
+		border-color : $x;
+	}
+}
+/****************** Font, Background, Border Colors ******************/
+/****************** Box shadow ******************/
+.bs-white {
+    box-shadow: $box-shadow1;
+}
+
+.bs-gray {
+    box-shadow: $box-shadow2;
+}
+/****************** Box shadow ******************/
+/****************** Border Radius ******************/
+.br0 {border-radius: 0;}
+.br4 {border-radius: 4px;}
+.br6 {border-radius: 6px;}
+.br8 {border-radius: 8px;}
+.br12 {border-radius: 12px;}
+.br50 {border-radius: 50%;}
+/****************** Border Radius ******************/
+/****************** Support styles ******************/
+.modal-header::before,
+.modal-header::after,
+.modal-footer::before,
+.modal-footer::after,
+.clearfix::after,
+.clearfix::before,
+.container-fluid::after,
+.container-fluid::before,
+.container::after,
+.container::before,
+.nav::after,
+.nav::before,
+.navbar-collapse::after,
+.navbar-collapse::before,
+.navbar-header::after,
+.navbar-header::before,
+.navbar::after,
+.navbar::before,
+.row::after,
+.row::before {
+    content: " ";
+    display: table;
+}
+
+.modal-header::after,
+.modal-footer::after,
+.clearfix::after,
+.container-fluid::after,
+.container::after,
+.nav::after,
+.navbar-collapse::after,
+.navbar-header::after,
+.navbar::after,
+.row::after {
+    clear: both;
+}
+
+::after,
+::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+/****************** Support styles ******************/
+/****************** Common styles ******************/
+.container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.container-fluid {
+    width: 100%;
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.row {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+@media only screen and (min-width: 1366px) {
+    .container {
+        max-width: 1400px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+@media (max-width: 1365px) {
+    .container {
+        max-width: 1180px;
+    }
+}
+
+@media (max-width: 991px) {
+    .container {
+        max-width: 760px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .container {
+        max-width: 980px;
+    }
+}
+
+body {
+	.no-padding {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.zero-padding {
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+	}
+}
+
+.secHeader {
+    margin-bottom: 25px;
+    margin-top: 15px;
+}
+
+.secBlock {
+    padding: 50px 0 10px;
+}
+
+.secText {
+    padding-bottom: 15px;
+}
+
+.fixed-bg {
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.contain-bg {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cover-bg {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.hideflow {
+    overflow: hidden;
+}
+/****************** Common styles ******************/
+/****************** Column styles ******************/
+.col {
+    position: relative;
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.float-r {
+    float: right;
+}
+
+.h-max {
+    height: 100%;
+}
+
+.h-auto {
+    height: auto;
+}
+
+.w-auto {
+    width: auto !important;
+}
+
+@include grid-columns();
+
+/****************** Column styles ******************/
+/****************** loader ******************/
+.page_loader {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0, 0.9);
+
+    .spinner_svg {
+        @extend %absolute-basic;
+        z-index: 2;
+        @include animation(rotate 2s linear infinite);
+
+        .path {
+            stroke-dasharray: 1,850; 
+            stroke-dashoffset: 0;
+            stroke-linecap: round;
+            stroke: $color4;
+            @include animation(dash 1.5s ease-in-out infinite);
+        }
+
+        .bgPath {
+            stroke: $color1;
+        }
+    }
+}
+
+.windowLoader .page_loader{
+    position: fixed;
+}
+
+@include keyframes('rotate') {
+    100% { @include transform(rotate(360deg)); }
+}
+
+@include keyframes('dash') {
+    0% {stroke-dasharray: 1,850; stroke-dashoffset: 0;}
+    50% {stroke-dasharray: 90,850; stroke-dashoffset: -35;}
+    100% {stroke-dasharray: 90,850; stroke-dashoffset: -150;}
+}
+/****************** loader ******************/
+/****************** Random appearance Animations ******************/
+.randomAppearance {
+	@extend %absolute-basic;
+	overflow: hidden;
+
+	.svgAnimate {
+		opacity: 1;
+		@include transition(all 2s ease);
+
+		&.disappear {
+			opacity: 0;
+		}
+	}
+
+}
+/****************** Random appearance Animations ******************/
+/****************** Svg Draw Animations ******************/
+svg.drawAnim * {
+ 	stroke-dasharray: 1800px;
+ 	stroke-dashoffset: 1800px;
+ 	@include anim($name: drawSvg, $duration: 1s, $fill-mode: forwards, $timing-function: linear, $iteration-count: 1, $delay: 0.35s);
+}
+
+@include keyframes('drawSvg') {
+	0% {
+		fill-opacity: 0;
+		stroke-width: 5;
+	}
+
+	90% {
+		fill-opacity: 0;
+		stroke-width: 5;
+	}
+
+	to {
+		stroke-dashoffset: 0;
+		fill-opacity: 1;
+		stroke-width: 0;
+	}
+
+}
+/****************** Svg Draw Animations ******************/
+/****************** Scroll Animations ******************/
+@media only screen and (min-width: 768px) {
+	.loading,
+	.animate {
+		opacity: 0
+	}
+
+    .animated {
+		@include anim($duration: 1s, $fill-mode: forwards);
+
+		&.slow {
+			@include anim($duration: 1.5s);
+		}
+
+		&.fast {
+			@include anim($duration: 0.5s);
+		}
+	}
+
+	@each $x,$v in $baseAnimations {
+		.#{$x} {
+    		opacity: 0;
+			@include anim($name: #{$x});
+			@if #{$x}=="fadeInShrink" {
+				@include transition(all .6s cubic-bezier(.77, 0, .175, 1) .8s);
+			}
+        }
+        
+        @if index("shake", #{$x}) {
+            @include keyframes(#{$x}) {
+                from,
+                to {
+                    opacity: 1;
+                    @include transform(translate3d(0, 0, 0));
+                }
+
+                10%,
+                30%,
+                50%,
+                70%,
+                90% {
+                    @include transform(translate3d(-10px, 0, 0));
+                }
+
+                20%,
+                40%,
+                60%,
+                80% {
+                    @include transform(translate3d(10px, 0, 0));
+                }
+            }
+        } @else {
+		    @include keyframes(#{$x}) {
+                0% {
+                    opacity: 0;
+                    @include transform(#{$v});
+                }
+
+                to {
+                    opacity: 1;
+                    @if index("fadeInShrink" "fadeInExplode", #{$x}) {
+                        @include transform(scale3d(1, 1, 1));
+                    } @else {
+                        @include transform(none);
+                    }
+                }
+            }
+		}
+	}
+}
+/****************** Scroll Animations ******************/

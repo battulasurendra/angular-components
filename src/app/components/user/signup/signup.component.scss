@@ -1,0 +1,19 @@
+.social-logins {
+    .btn {
+        margin: 5px;
+        padding: 0 25px;
+        border: none;
+
+        &.fb-login {
+            background: #3d5a96;
+        }
+
+        &.linkedin-login{
+            background: #007ab7;
+        }
+
+        &.twitter-login{
+            background: #2aa3ef;
+        }
+    }
+}

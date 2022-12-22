@@ -1,0 +1,180 @@
+@mixin grid-columns($size:0) {
+	@if $size !=0 {
+		$size : $size+'-';
+	} @else {
+		$size : '';
+	}
+
+	@for $i from 0 through $common-grid-columns {
+		$val : percentage(($i / $common-grid-columns));
+		.w-g-#{$size}#{$i} {
+			width: $val;
+		}
+
+		.w-g-#{$size}pull-#{$i} {
+			@if $i !=0 {
+				right: $val;
+			} @else {
+				right: auto;
+			}
+		}
+
+		.w-g-#{$size}push-#{$i} {
+			@if $i !=0 {
+				left: $val;
+			} @else {
+				left: auto;
+			}
+		}
+
+		.w-g-#{$size}offset-#{$i} {
+			margin-left: $val;
+		}
+    }
+    
+    @for $i from 0 through $custom-grid-columns {
+		$val : percentage(($i / $custom-grid-columns));
+		.w-#{$size}#{$i} {
+			width: $val;
+		}
+
+		.w-#{$size}pull-#{$i} {
+			@if $i !=0 {
+				right: $val;
+			} @else {
+				right: auto;
+			}
+		}
+
+		.w-#{$size}push-#{$i} {
+			@if $i !=0 {
+				left: $val;
+			} @else {
+				left: auto;
+			}
+		}
+
+		.w-#{$size}offset-#{$i} {
+			margin-left: $val;
+		}
+	}
+}
+
+@mixin color($color){
+	color: $color;
+	fill: $color;
+	stroke: $color;
+}
+
+@mixin transition($set){
+	-webkit-transition: $set;
+	   -moz-transition: $set;
+			transition: $set;
+}
+
+@mixin transform($set){
+	-webkit-transform: $set;
+	   -moz-transform: $set;
+			transform: $set;
+}
+
+@mixin animation($set) {
+	-webkit-animation: $set;
+	   -moz-animation: $set;
+            animation: $set;
+}
+
+@mixin property($args...) {
+	@debug keywords($args);
+
+	@each $name, $value in keywords($args) {
+		-webkit-#{$name}: $value;
+		-moz-#{$name}: $value;
+		#{$name}: $value;
+	}
+}
+
+@mixin anim($args...) {
+	@debug keywords($args);
+	@each $name, $value in keywords($args) {
+		-webkit-animation-#{$name}: $value;
+		   -moz-animation-#{$name}: $value;
+				animation-#{$name}: $value;
+	}
+}
+
+@mixin keyframes($name) {
+	@-webkit-keyframes #{$name} {
+		@content;
+	}
+
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+
+	@keyframes #{$name} {
+		@content;
+	}
+}
+
+
+@mixin  fadePath($start,$end) {
+	path {
+		@for $i from $start through $end {
+			&:nth-child(#{$i}) {
+				fill-opacity: 0.5;
+			}
+		}
+	}
+}
+
+@mixin generateSprite($image, $columns, $rows) {
+
+	[class*="spriteAfter-"] {
+		position: relative;
+	}
+
+	[class*="spriteAfter-"]::after {
+		content: '';
+		@extend %absolute-basic;
+	}
+
+	$sizes : (
+		'default':36,
+		'lg':50,
+		'md':36,
+		'sm':30,
+		'xs':24,
+		'xxs':20,
+		'ss':16
+	);
+
+	@each $name, $value in $sizes {
+		@if $name =='default' {
+			[class*="spriteAfter-"]::after,
+			[class*="sprite-"] {
+				width: $value+px;
+				height: $value+px;
+				background: url($image) 0 0 unquote('/') (100*$columns)+unquote('%') (100*$rows)+unquote('%') no-repeat;
+				display: block;
+			}
+		}
+
+		@else {
+			.spriteAfter-#{$name}::after,
+			.sprite-#{$name} {
+				width: $value+px;
+				height: $value+px;
+			}
+		}
+	}
+
+	$percentage : 100/($rows - 1);
+
+	@for $i from 0 through $rows {
+		.icon-#{$i+1}[class*="spriteAfter-"]::after,
+		.icon-#{$i+1} {
+			background-position: 0 ($percentage*$i)+unquote('%');
+		}
+	}
+}

@@ -1,0 +1,62 @@
+/****************** Project Sizes(WxH)(px) ******************/
+/*  Banner Image
+        Desktop - 2550 x 1024
+        Laptop  - 1330 x 820
+        Tablet  - 768  x 1024
+        Mobile  - 640  x 960
+*/
+/*  Full Image       - 1250 x 950   */
+/*  Full Image(edge) - 1330 x auto  */
+/****************** Project Sizes ******************/
+/****************** Variables ******************/
+
+$common-grid-columns: 12;
+$custom-grid-columns: 10;
+
+$color1 : #ffffff;
+$color2 : #000000;
+$color3 : #BCE0FD;
+$color4 : #28A9E0;
+$color5 : #8bc13f;
+$color6 : #FFC31A;
+$color7 : #f8f9fa;
+$color8 : #9e9e9e;
+$color9 : #333333;
+$color10 : red;
+$color11 : #F58220;
+$color12 : #525f7f;
+$color13 : #B3B3B3;
+
+$colors: $color1,$color2,$color3,$color4,$color5,$color6,$color7,$color8,$color9,$color10, $color11, $color12, $color13;
+
+$font-family1 : 'Roboto', sans-serif;
+$font-family2 : 'Nachlieli CLM', sans-serif;
+$font-set1: 400 15px/22px $font-family1;
+
+$form-radius : 2px;
+
+$hide : none !important;
+$show : block !important;
+
+$border-set1: 1px solid $color3;
+$border-set2: 1px solid;
+$border-set3: 1px solid transparent;
+
+$box-shadow1: 0 0px 4px rgba(0, 0, 0, .2);
+$box-shadow2: 0 1px 4px rgba(0, 0, 0, .2);
+
+$transition-set1 : all 0.5s ease-in-out;
+$transition-set2 : all 0.2s linear;
+$baseAnimations: ("fadeIn":"none", "fadeInUp":"translate3d(0, 30px, 0)", "fadeInRight":"translate3d(30px, 0, 0)", "fadeInDown":"translate3d(0, -30px, 0)", "fadeInLeft":"translate3d(-30px, 0, 0)", "fadeInExplode":"scale3d(0.3, 0.3, 0.3)", "fadeInShrink":"scale3d(1.3, 1.3, 1.3)", "shake":"translate3d(-10px, 0, 0)");
+
+%absolute-basic {
+	position: absolute;
+	width: auto;
+	height: auto;
+	margin: auto;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+/****************** Variables ******************/
